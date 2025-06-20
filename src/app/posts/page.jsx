@@ -31,7 +31,7 @@ export default async function Posts({ searchParams }) {
           </Link>
         ))}
       </nav>
-      <div className="flex flex-col justify-center gap-5 p-2">
+      <div className="flex flex-col items-center gap-5 p-2">
         {posts.map((post) => (
           <Link key={post.id} href={`/posts/${post.id}`} className="p-1">
             <h2 className="text-blue-300 hover:text-blue-500 text-xl">
