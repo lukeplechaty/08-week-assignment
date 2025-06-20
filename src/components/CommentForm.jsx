@@ -1,11 +1,13 @@
 "use client";
 import { redirect } from "next/navigation";
-import { Save } from "@/libs/Save";
+import { Save } from "#/Save";
 export default function CommentForm(props) {
   function local(commentId) {
     let ids = [];
     try {
-      ids = JSON.parse(localStorage.getItem("ids"));
+      ids = localStorage.getItem("ids")
+        ? JSON.parse(localStorage.getItem("ids"))
+        : [];
     } catch (error) {}
     ids.push(commentId);
     localStorage.setItem("ids", JSON.stringify(ids));

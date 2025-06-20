@@ -1,6 +1,6 @@
 import CommentForm from "@/components/CommentForm";
 import Comments from "@/components/Comments";
-import { db } from "@/utils/dbConnection";
+import { db } from "#/dbConnection";
 
 export async function generateMetadata({ params }) {
   const props = await params;
@@ -21,11 +21,11 @@ export default async function Blog({ params }) {
   ]);
   const post = query.rows[0];
   return (
-    <>
+    <div>
       <h2>Name: {post.name}</h2>
       <p>Blog: {post.blog}</p>
       <CommentForm id={post.id} />
       <Comments id={post.id} />
-    </>
+    </div>
   );
 }

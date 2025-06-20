@@ -1,16 +1,41 @@
-import { db } from "@/utils/dbConnection";
-import Comment from "./Comment";
-export default async function Comments(props) {
-  const query = await db.query(
-    `SELECT id,name,msg FROM week08comments WHERE blog_id=$1 ORDER BY id ASC`,
-    [props.id]
-  );
-  const comments = query.rows;
+"use client";
+import { useEffect, useState } from "react";
+import { redirect } from "next/navigation";
+import { Load } from "#/Load";
+import { Delete } from "#/Delete";
+
+export default function Comments(props) {
+  const [comments, setcomments] = useState([]);
+  const [ids, setids] = useState([]);
+  useEffect(() => {
+    async function run(params) {
+      const data = await Load(props.id);
+      setcomments(data);
+      const temp = localStorage.getItem("ids")
+        ? JSON.parse(localStorage.getItem("ids"))
+        : [{ id: 0 }];
+      setids(temp);
+    }
+    run();
+  }, []);
+
+  async function run(params) {
+    await Delete(props.id, params);
+    redirect(`/posts/${props.id}`);
+  }
   return (
     <div>
       {comments.map((comment) => (
         <div key={comment.id}>
-          <Comment comment={comment} />
+          <h2>{comment.name}</h2>
+          <p>{comment.msg}</p>
+          {ids.map((val) =>
+            val.id === comment.id ? (
+              <button key={val.id} onClick={() => run(val.id)}>
+                Delete
+              </button>
+            ) : null
+          )}
         </div>
       ))}
     </div>

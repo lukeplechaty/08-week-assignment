@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { db } from "@/utils/dbConnection";
-import { sortLinks } from "@/libs/Links";
+import { db } from "#/dbConnection";
+import { sortLinks } from "#/Links";
 
 export const metadata = {
   title: "Luke's Blog - Posts",
-  description: "posts of all blogs",
+  description: "Posts of all blogs",
 };
 
 export default async function Posts({ searchParams }) {
@@ -22,7 +22,7 @@ export default async function Posts({ searchParams }) {
   else if (query.sort === "rev") posts.reverse();
 
   return (
-    <>
+    <div>
       <h1 className="text-center ">Blog Posts</h1>
       <nav className="flex justify-center gap-5">
         {sortLinks.map((link) => (
@@ -36,6 +36,6 @@ export default async function Posts({ searchParams }) {
           <h2>{post.name}</h2>
         </Link>
       ))}
-    </>
+    </div>
   );
 }

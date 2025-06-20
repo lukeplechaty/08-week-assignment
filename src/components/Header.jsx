@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { mainLinks } from "@/libs/Links";
+import { mainLinks } from "#/Links";
 import { usePathname } from "next/navigation";
 
 export default function Header() {
