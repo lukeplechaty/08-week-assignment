@@ -1,7 +1,7 @@
 "use server";
 import { db } from "@/utils/dbConnection";
 import { revalidatePath } from "next/cache";
-export async function Save(params, id) {
+export default async function Save(params, id) {
   const name = params.get("name");
   const message = params.get("msg");
   const query = await db.query(

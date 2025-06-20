@@ -23,19 +23,23 @@ export default async function Posts({ searchParams }) {
 
   return (
     <div>
-      <h1 className="text-center ">Blog Posts</h1>
-      <nav className="flex justify-center gap-5">
+      <h1 className="text-center p-2 text-3xl font-bold">Blog Posts</h1>
+      <nav className="flex justify-center gap-5 p-2">
         {sortLinks.map((link) => (
           <Link key={link.key} href={link.href}>
-            <h2>{link.name}</h2>
+            <h2 className="hover:text-blue-500">{link.name}</h2>
           </Link>
         ))}
       </nav>
-      {posts.map((post) => (
-        <Link key={post.id} href={`/posts/${post.id}`}>
-          <h2>{post.name}</h2>
-        </Link>
-      ))}
+      <div className="flex justify-center gap-5 p-2">
+        {posts.map((post) => (
+          <Link key={post.id} href={`/posts/${post.id}`} className="p-1">
+            <h2 className="text-blue-300 hover:text-blue-500 text-xl">
+              {post.name}
+            </h2>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }

@@ -9,8 +9,8 @@ export async function generateMetadata({ params }) {
   ]);
   const post = await query.rows[0];
   return {
-    title: `Luke's Blog - Post ${post.name}`,
-    description: `This Post is ${post.name}`,
+    title: `Luke's Blog - Post ${post?.name}`,
+    description: `This Post is ${post?.name}`,
   };
 }
 
@@ -21,11 +21,11 @@ export default async function Blog({ params }) {
   ]);
   const post = query.rows[0];
   return (
-    <div>
-      <h2>Name: {post.name}</h2>
-      <p>Blog: {post.blog}</p>
-      <CommentForm id={post.id} />
-      <Comments id={post.id} />
+    <div className="flex flex-col items-center">
+      <h2 className="text-3xl p-2">{post?.name}</h2>
+      <p className="p-2 max-w-3xl">{post?.blog}</p>
+      <CommentForm id={post?.id} />
+      <Comments id={post?.id} />
     </div>
   );
 }

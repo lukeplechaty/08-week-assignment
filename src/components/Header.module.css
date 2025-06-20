@@ -1,0 +1,6 @@
+.selected {
+  background: rgb(124, 0, 0);
+}
+.unselected {
+  background: black;
+}
